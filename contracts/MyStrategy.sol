@@ -33,8 +33,8 @@ contract MyStrategy is BaseStrategy {
 
     IBaseV1Router01 public constant SOLIDLY_ROUTER = IBaseV1Router01(0xa38cd27185a464914D3046f0AB9d43356B34829D);
 
-    // The initial DELEGATE for the strategy // NOTE we can change it by using manualSetDelegate below
-    address public constant DELEGATE = address(0x781E82D5D49042baB750efac91858cB65C6b0582);
+    // The initial INITIAL_DELEGATE for the strategy // NOTE we can change it by using manualSetDelegate below
+    address public constant INITIAL_DELEGATE = address(0x781E82D5D49042baB750efac91858cB65C6b0582);
 
     /// @dev Initialize the Strategy with security settings as well as tokens
     /// @notice Proxies will set any non constant variable you declare as default value
@@ -47,7 +47,7 @@ contract MyStrategy is BaseStrategy {
         want = address(OXD);
 
         OXD.safeApprove(address(LOCKER), type(uint256).max);
-        VOTING_SNAPSHOT.setVoteDelegate(DELEGATE);
+        VOTING_SNAPSHOT.setVoteDelegate(INITIAL_DELEGATE);
 
         OXSOLID.safeApprove(address(SOLIDLY_ROUTER), type(uint256).max);
 
