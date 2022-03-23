@@ -2,6 +2,7 @@ import brownie
 from brownie import *
 from helpers.constants import MaxUint256
 from helpers.SnapshotManager import SnapshotManager
+from helpers.time import days
 
 MAX_BASIS = 10000
 SECS_PER_YEAR = 31_556_952
@@ -41,6 +42,7 @@ def test_is_profitable(deployed):
 
     snap.settHarvest({"from": settKeeper})
 
+    chain.sleep(days(7 * 17))
     strategy.manualProcessExpiredLocks({"from": deployed.governance})
 
     snap.settWithdrawAll({"from": deployer})

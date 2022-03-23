@@ -198,6 +198,8 @@ contract MyStrategy is BaseStrategy {
         }
 
         _reportToVault(harvested[0].amount);
+
+        _deposit(harvested[0].amount);
     }
 
     // Example tend is a no-op which returns the values, could also just revert
