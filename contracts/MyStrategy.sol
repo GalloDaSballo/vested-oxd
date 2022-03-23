@@ -179,7 +179,7 @@ contract MyStrategy is BaseStrategy {
         LOCKER.getReward();
 
         harvested = new TokenAmount[](1);
-        harvested[0].token = address(OXD);
+        harvested[0].token = address(OXD); // want
 
         // OXSOLID --> SOLID --> WFTM --> OXD
         uint256 oxSolidBalance = OXSOLID.balanceOf(address(this));
@@ -193,9 +193,9 @@ contract MyStrategy is BaseStrategy {
             routeArray[2] = route(address(WFTM), address(OXD), false);
 
             SOLIDLY_ROUTER.swapExactTokensForTokens(oxSolidBalance, 0, routeArray, address(this), block.timestamp);
-
-            harvested[0].amount = balanceOfWant().sub(wantBalanceBefore);
         }
+
+        harvested[0].amount = balanceOfWant().sub(wantBalanceBefore);
 
         _reportToVault(harvested[0].amount);
 
