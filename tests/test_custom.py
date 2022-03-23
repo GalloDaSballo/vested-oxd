@@ -107,7 +107,7 @@ def test_delegation_was_correct(deployer, vault, strategy, want, governance):
 
     chain.sleep(10000 * 13)  # Mine so we get some interest
 
-    delegate = strategy.DELEGATE()
+    delegate = strategy.INITIAL_DELEGATE()
     voting_snapshot = interface.IVotingSnapshot(strategy.VOTING_SNAPSHOT())
     assert voting_snapshot.voteDelegateByAccount(strategy) == delegate
 
