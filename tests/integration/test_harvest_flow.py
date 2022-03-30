@@ -100,6 +100,9 @@ def test_single_user_harvest_flow(deployer, vault, strategy, want, keeper, gover
     chain.mine()
 
     snap.settHarvest({"from": keeper})
+
+    chain.sleep(days(7 * 17))
+    strategy.manualProcessExpiredLocks({"from": governance})
     snap.settWithdraw(shares // 2 - 1, {"from": deployer})
 
 
